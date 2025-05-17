@@ -23,6 +23,7 @@ import java.util.concurrent.Executors;
 import edu.ec.projecttracker.AppDatabase;
 import edu.ec.projecttracker.R;
 import edu.ec.projecttracker.entity.User;
+import edu.ec.projecttracker.utils.UserSession;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // initialize database
         db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "project_tracker_db").build();
+                AppDatabase.class, "project_tracker_db_1").build();
 
         // initialize views
         btnLogin = findViewById(R.id.btnLogin);
@@ -126,13 +127,16 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                //Store user in the singleton
+                UserSession.getInstance().setCurrentUser(user);
+
                 Toast.makeText(this, "LOGIN EXITOSO", Toast.LENGTH_LONG).show();
 
 //                // Login successful
-//                // Navigate to main activity or dashboard
-//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                finish(); // Close login activity
+                // Navigate to main activity or dashboard
+                Intent intent = new Intent(LoginActivity.this, ProjectActivity.class);
+                startActivity(intent);
+                finish(); // Close login activity
             });
         } catch (Exception e) {
             runOnUiThread(() -> {

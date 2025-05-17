@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="¿Olvidaste tu contraseña?"
-        android:textColor="#3F51B5"
+        android:textColor="#00897B"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="¿No tienes cuenta? Regístrate"
-        android:textColor="#3F51B5"
+        android:textColor="#00897B"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

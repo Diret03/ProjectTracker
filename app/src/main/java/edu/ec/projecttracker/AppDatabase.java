@@ -10,7 +10,7 @@ import edu.ec.projecttracker.entity.Project;
 import edu.ec.projecttracker.entity.Task;
 import edu.ec.projecttracker.entity.User;
 
-@Database(entities = {User.class, Project.class, Task.class}, version = 1)
+@Database(entities = {User.class, Project.class, Task.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract ProjectDao projectDao();
