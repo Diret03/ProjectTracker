@@ -30,4 +30,17 @@ public class Task {
     public  String startDate;
     @ColumnInfo(name = "end_date")
     public  String endDate;
+
+    @ColumnInfo(name = "status")
+    public String status; // "Planificado", "En ejecución", "Realizado"
+
+    public Task() {
+        // Default status for new tasks
+        this.status = "Planificado";
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

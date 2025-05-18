@@ -3,6 +3,7 @@ package edu.ec.projecttracker.dao;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -17,6 +18,9 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks WHERE id = :taskId")
     Task findById(int taskId);
 
+    @Query("SELECT * FROM tasks WHERE project_id = :projectId")
+    List<Task> getTasksByProjectId(int projectId);
+
     @Query("SELECT * FROM tasks WHERE id IN (:taskIds)")
     List<Task> loadAllByIds(int[] taskIds);
 
@@ -29,11 +33,20 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks WHERE start_date = :date OR end_date = :date")
     Task findByDate(String date);
 
+    @Query("SELECT COUNT(*) FROM tasks WHERE project_id = :projectId")
+    int countTasksByProjectId(int projectId);
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE project_id = :projectId AND status = :status")
+    int countTasksByProjectIdAndStatus(int projectId, String status);
+
     @Insert
     void insertAll(Task... tasks);
 
     @Insert
     void insert(Task task);
+
+    @Update
+    void update(Task task);
 
     @Query("DELETE FROM tasks WHERE id = :taskId")
     void deleteById(int taskId);

@@ -44,8 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         // initialize database
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "project_tracker_db_1").build();
+        db = AppDatabase.getInstance(getApplicationContext());
 
         // initialize views
         btnSignUp = findViewById(R.id.btnSignUp);

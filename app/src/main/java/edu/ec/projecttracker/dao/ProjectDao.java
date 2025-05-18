@@ -3,6 +3,7 @@ package edu.ec.projecttracker.dao;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -36,6 +37,9 @@ public interface ProjectDao {
     void InsertAll(Project... projects);
     @Insert
     void Insert(Project project);
+
+    @Update
+    void update(Project project);
 
     @Query("DELETE FROM projects WHERE id = :projectId")
     void deleteById(int projectId);

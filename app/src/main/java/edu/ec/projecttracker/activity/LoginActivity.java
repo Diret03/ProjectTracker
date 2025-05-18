@@ -46,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // initialize database
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "project_tracker_db_1").build();
+        db = AppDatabase.getInstance(getApplicationContext());
 
         // initialize views
         btnLogin = findViewById(R.id.btnLogin);
@@ -58,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         // sign up listener
         TextView tvSignUpPrompt = findViewById(R.id.tvSignUpPrompt);
         tvSignUpPrompt.setOnClickListener(view -> {
-            android.content.Intent intent = new android.content.Intent(LoginActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
 
@@ -134,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //                // Login successful
                 // Navigate to main activity or dashboard
-                Intent intent = new Intent(LoginActivity.this, ProjectActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish(); // Close login activity
             });

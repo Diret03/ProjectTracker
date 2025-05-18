@@ -27,7 +27,13 @@ public class Project {
     public  String startDate;
     @ColumnInfo(name = "end_date")
     public  String endDate;
-
+    @ColumnInfo(name = "progress")
+    public int progress = 0;
     @ColumnInfo(name = "user_id")
     public int userId;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
