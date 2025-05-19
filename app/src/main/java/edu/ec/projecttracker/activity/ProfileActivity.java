@@ -125,8 +125,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         layoutChangePassword.setOnClickListener(v -> {
-            // For now, just show a toast message
-            Toast.makeText(this, "Funcionalidad en desarrollo", Toast.LENGTH_SHORT).show();
+            showChangePasswordDialog();
         });
 
         layoutLogout.setOnClickListener(v -> {
@@ -225,6 +224,84 @@ public class ProfileActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     Toast.makeText(ProfileActivity.this,
                             "Error al actualizar perfil: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+    }
+
+    private void showChangePasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_change_password, null);
+
+        EditText etCurrentPassword = view.findViewById(R.id.etCurrentPassword);
+        EditText etNewPassword = view.findViewById(R.id.etNewPassword);
+        EditText etConfirmPassword = view.findViewById(R.id.etConfirmPassword);
+
+        builder.setView(view)
+                .setPositiveButton("Guardar", null)
+                .setNegativeButton("Cancelar", null)
+                .create();
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Set the button listener after dialog is shown to prevent automatic dismissal
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String currentPassword = etCurrentPassword.getText().toString().trim();
+            String newPassword = etNewPassword.getText().toString().trim();
+            String confirmPassword = etConfirmPassword.getText().toString().trim();
+
+            // Validate inputs
+            if (currentPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(ProfileActivity.this,
+                        "Todos los campos son requeridos", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!currentPassword.equals(currentUser.password)) {
+                Toast.makeText(ProfileActivity.this,
+                        "La contraseña actual no es correcta", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (newPassword.length() < 6) {
+                Toast.makeText(ProfileActivity.this,
+                        "La nueva contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!newPassword.equals(confirmPassword)) {
+                Toast.makeText(ProfileActivity.this,
+                        "Las contraseñas nuevas no coinciden", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Change password
+            updatePassword(newPassword);
+            dialog.dismiss();
+        });
+    }
+
+    private void updatePassword(String newPassword) {
+        executor.execute(() -> {
+            try {
+                // Update user in database
+                currentUser.password = newPassword;
+                db.userDao().update(currentUser);
+
+                // Update session
+                UserSession.getInstance().setCurrentUser(currentUser);
+
+                runOnUiThread(() -> {
+                    Toast.makeText(ProfileActivity.this,
+                            "Contraseña actualizada con éxito",
+                            Toast.LENGTH_SHORT).show();
+                });
+            } catch (Exception e) {
+                runOnUiThread(() -> {
+                    Toast.makeText(ProfileActivity.this,
+                            "Error al actualizar contraseña: " + e.getMessage(),
                             Toast.LENGTH_SHORT).show();
                 });
             }
