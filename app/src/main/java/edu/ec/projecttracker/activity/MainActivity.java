@@ -26,7 +26,10 @@ public class MainActivity extends AppCompatActivity {
         // Set up toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Project Tracker");
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false); // hide the title
+        }
+//        getSupportActionBar().setTitle("Project Tracker");
 
         // Set up navigation cards
         CardView cardProjects = findViewById(R.id.cardProjects);

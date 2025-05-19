@@ -126,7 +126,7 @@ public class ProjectActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_create_project, null);
         builder.setView(dialogView);
-        builder.setTitle("Crear Nuevo Proyecto");
+//        builder.setTitle("Crear Nuevo Proyecto");
 
         // Get references to form elements
         EditText etProjectName = dialogView.findViewById(R.id.etProjectName);
@@ -172,7 +172,7 @@ public class ProjectActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_create_project, null);
         builder.setView(dialogView);
-        builder.setTitle("Editar Proyecto");
+//        builder.setTitle("Editar Proyecto");
 
         // Get references to form elements
         EditText etProjectName = dialogView.findViewById(R.id.etProjectName);

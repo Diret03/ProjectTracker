@@ -53,7 +53,7 @@ public class TaskActivity extends AppCompatActivity {
         // Set up toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Mis Tareas");
+//        getSupportActionBar().setTitle("Mis Tareas");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -150,7 +150,7 @@ public class TaskActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_create_task, null);
         builder.setView(dialogView);
-        builder.setTitle("Crear Nueva Tarea");
+//        builder.setTitle("Crear Nueva Tarea");
 
         // Get references to form elements
         EditText etTaskName = dialogView.findViewById(R.id.etTaskName);
@@ -224,7 +224,7 @@ public class TaskActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_create_task, null);
         builder.setView(dialogView);
-        builder.setTitle("Editar Tarea");
+//        builder.setTitle("Editar Tarea");
 
         // Get references to form elements
         EditText etTaskName = dialogView.findViewById(R.id.etTaskName);
