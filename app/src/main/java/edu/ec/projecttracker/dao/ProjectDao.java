@@ -33,6 +33,8 @@ public interface ProjectDao {
     @Query("SELECT * FROM projects WHERE start_date = :date OR end_date = :date")
     Project findByDate(String date);
 
+    @Query("SELECT COUNT(*) FROM projects WHERE user_id = :userId")
+    int getProjectCount(int userId);
     @Insert
     void InsertAll(Project... projects);
     @Insert

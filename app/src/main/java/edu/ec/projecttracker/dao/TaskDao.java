@@ -39,6 +39,16 @@ public interface TaskDao {
     @Query("SELECT COUNT(*) FROM tasks WHERE project_id = :projectId AND status = :status")
     int countTasksByProjectIdAndStatus(int projectId, String status);
 
+    @Query("SELECT COUNT(*) FROM tasks t " +
+            "INNER JOIN projects p ON t.project_id = p.id " +
+            "WHERE p.user_id = :userId")
+    int getTaskCount(int userId);
+
+    @Query("SELECT COUNT(*) FROM tasks t " +
+            "INNER JOIN projects p ON t.project_id = p.id " +
+            "WHERE p.user_id = :userId AND t.status = 'Realizado'")
+    int getCompletedTaskCount(int userId);
+
     @Insert
     void insertAll(Task... tasks);
 

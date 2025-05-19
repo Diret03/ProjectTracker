@@ -32,7 +32,9 @@ public interface UserDao {
     void insertAll(User... users);
     @Insert
     void insert(User user);
-
+    
+    @Update
+    void update(User user);
     @Delete
     void delete(User user);
 }

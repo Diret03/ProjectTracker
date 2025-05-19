@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         cardProfile.setOnClickListener(view -> {
-            // Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-            // startActivity(intent);
+             Intent intent = new Intent(this, ProfileActivity.class);
+             startActivity(intent);
         });
     }
 
